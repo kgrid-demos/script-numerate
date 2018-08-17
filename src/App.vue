@@ -31,6 +31,11 @@ export default {
     }).catch(e=>{
       console.log(e)
     })
+    this.$http.get("./static/json/config.json").then(response=> {
+      self.$store.commit('setpaths',response.data);
+    }).catch(e=>{
+      console.log(e)
+    })
     // will move to objdetail and construct the tree using model children array
     // this.$http.get("./static/json/kotree.json").then(response=> {
     //   self.$store.commit('setkottree',response.data);

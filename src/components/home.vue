@@ -3,23 +3,35 @@
 	<applayout :nothelper='true'>
 		<div slot='banner'>
 			<div class='bannercontent'>
-				<h1 style='color:#0075bc;font-weight:700;'>Druggle</h1>
-				<h1>To See the prescribing pattern </h1>
-				<v-autocomplete :items="items" v-model="item" :get-label="getLabel"  :min-len='0' @blur='blur' :component-item='template' @item-selected='itemSelected' @item-clicked='itemSelected' @update-items="updateItems">
+				<h1 style='color:#0075bc;font-weight:700;'>Droogle</h1>
+				<h1>To see the prescribing pattern </h1>
+				<v-autocomplete :items="items" v-model="item" :get-label="getLabel"  :min-len='1' @blur='blur' :component-item='template' @item-selected='itemSelected' @item-clicked='itemSelected' @update-items="updateItems">
 			   </v-autocomplete>
+
 			</div>
 		</div>
 		<!-- <div slot='header'>
 		</div> -->
 		<div slot='maincontent'>
+			<div class='row tabletitle' v-show='resultready'>
+				<div class='col-md-8 col-sm-8 col-xs-8' style='padding-top:10px;line-height: 3em;'>
+					<span style='font-size:24px; font-style:italic; font-weight:600;'> {{selectedrxcui}} - {{selectedname}}</span>
+				</div>
+				<div class='col-md-4 col-sm-4 col-xs-4' style='font-size:16px; line-height:2em; padding-top:10px;'>
+					<span>Date Range: Jan. 01, 2016 - Dec. 31, 2016</span>
+					<span>Prescription Total Count: <b style="font-size:20px;"> {{count}} </b></span>
 
-			<span v-show='resultready' style='font-size:20px; font-style:italic; font-weight:500;'> {{selectedrxcui}} - {{selectedname}}</span>
+				</div>
+		</div>
+			<div class='kgl-search' v-show='resultready'>
+			 	<icon color="#0075bc" name="search"></icon>
+			 <input name="query" spellcheck=false v-model="searchQuery" @keypress.enter="enterPressed" placeholder="Enter text to search.">
+</div>
 			<kogrid v-show='resultready'
 	:data="siglist"
 	:columns="gridColumns"
 	:filter-key="searchQuery">
 </kogrid>
-	<span v-show='resultready'>Total Prescription Count: {{count}}</span>
 		</div>
 			</applayout>
 		</div>
@@ -43,8 +55,7 @@ export default {
   name: 'home',
 	data () {
      return {
-			 // activator_url:'http://localhost:8080/',
-			 activator_url:'https://kgrid-activator.herokuapp.com/',
+
 			 selectedrxcui:'',
 			 selectedname:'',
        item: null,
@@ -53,21 +64,31 @@ export default {
        template: itemtemplate,
 			 gridColumns:['sig','pattern','frequency'],
 			 searchQuery:'',
-			 // resultready:false,
+			 resultready:false,
 			 count:0
      }
    },
 	 computed:{
-		 resultready:function(){
+		 rxcuiready:function(){
 			 return this.item!=null
+		 },
+		 // activator_url:'http://localhost:8080/',
+		 activator_url: function(){
+			 return this.$store.getters.getactivatorurls[0]
+		 }
+	 },
+	 watch:{
+		 item:function() {
+			 if(this.item==null){
+				 this.resultready=false
+			 }
 		 }
 	 },
    methods: {
 		 itemSelected (item) {
 			 var self = this
 			 this.siglist=[]
-			 // this.resultready=false
-			 if(Object.keys(item).length != 0 ){
+			 if(item!=null){
 			 		this.selectedrxcui=item.rxcui
 					this.selectedname=item.name
 			 		console.log('Selected item!', item)
@@ -76,19 +97,21 @@ export default {
 			 		var obj={}
 			 	obj.arkID = '99999/'+this.selectedrxcui+'sig/v0.0.1/'
  		 		obj.endpoint = 'rxsigs'
- 			obj.data= JSON.stringify(input)
- 			obj.success= function(response) {
+ 				obj.data= JSON.stringify(input)
+ 				obj.success= function(response) {
 	 				console.log(response)
 					var outcome = JSON.parse(response.result)
 					self.siglist=outcome.sigs
-					// self.resultready=true
+					self.resultready=true
 					self.count = outcome.total
  				}
 				obj.error=function(resp){
 					console.error(resp)
 				}
  			this.KOPostaxios(obj)
-			}
+		} else {
+			self.resultready=false
+		}
 		},
 		blur(item){
 			if(item){
@@ -150,11 +173,7 @@ export default {
    }
 	,created : function() {
 		this.items=Drugs
-	}
-	, mounted:function(){
-		var self=this
 	},
-
 	components:{
 		applayout,
 		itemtemplate,
@@ -345,6 +364,14 @@ input[type=radio] {
 .kgl-newobj:hover span{
 	border-bottom: 2px solid #0075bc;
 	cursor:pointer;
+}
+.kgl-search {
+    display: inline-block;
+    border: 1px solid #fff;
+    border-radius: 0px;
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+		padding: 2px 15px;
 }
 .kgl-newobj i {
 	position: absolute;
