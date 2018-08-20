@@ -3,9 +3,9 @@
 	<applayout :nothelper='true'>
 		<div slot='banner'>
 			<div class='bannercontent'>
-				<h1 style='color:#0075bc;font-weight:700;'>Droogle</h1>
-				<h1>To see the prescribing pattern </h1>
-				<v-autocomplete :items="items" v-model="item" :get-label="getLabel"  :min-len='1' @blur='blur' :component-item='template' @item-selected='itemSelected' @item-clicked='itemSelected' @update-items="updateItems">
+				<div style='margin:30px;'> <img src='../assets/images/RxPattern3.png' width='35%' />
+				</div>
+				<v-autocomplete :items="items" v-model="item" :get-label="getLabel"  :min-len='2' :component-item='template' @item-selected='itemSelected' @item-clicked='itemSelected' @update-items="updateItems">
 			   </v-autocomplete>
 
 			</div>
@@ -13,6 +13,9 @@
 		<!-- <div slot='header'>
 		</div> -->
 		<div slot='maincontent'>
+			<div class='loading' v-show='!resultready && rxcuiready'>
+				Processing <span>.</span><span>.</span><span>.</span>
+			</div>
 			<div class='row tabletitle' v-show='resultready'>
 				<div class='col-md-8 col-sm-8 col-xs-8' style='padding-top:10px;line-height: 3em;'>
 					<span style='font-size:24px; font-style:italic; font-weight:600;'> {{selectedrxcui}} - {{selectedname}}</span>
@@ -81,6 +84,8 @@ export default {
 		 item:function() {
 			 if(this.item==null){
 				 this.resultready=false
+				 this.selectedname=''
+				 				 this.selectedrxcui=''
 			 }
 		 }
 	 },
@@ -474,4 +479,48 @@ input[type=radio] {
 	 margin-left:2px;
 	 margin-top:2px;
  }
+.loading {
+	font-size:30px;
+	font-weight: 500;
+	text-align:center;
+	padding: 50px 0px;
+}
+.loading span {
+		/**
+		 * Use the blink animation, which is defined above
+		 */
+		animation-name: blink;
+		/**
+		 * The animation should take 1.4 seconds
+		 */
+		animation-duration: 1.4s;
+		/**
+		 * It will repeat itself forever
+		 */
+		animation-iteration-count: infinite;
+		/**
+		 * This makes sure that the starting style (opacity: .2)
+		 * of the animation is applied before the animation starts.
+		 * Otherwise we would see a short flash or would have
+		 * to set the default styling of the dots to the same
+		 * as the animation. Same applies for the ending styles.
+		 */
+		animation-fill-mode: both;
+}
+.loading span:nth-child(2) {
+		/**
+		 * Starts the animation of the third dot
+		 * with a delay of .2s, otherwise all dots
+		 * would animate at the same time
+		 */
+		animation-delay: .2s;
+}
+.loading span:nth-child(3) {
+		/**
+		 * Starts the animation of the third dot
+		 * with a delay of .4s, otherwise all dots
+		 * would animate at the same time
+		 */
+		animation-delay: .4s;
+}
 </style>
