@@ -135,6 +135,9 @@ tr {
     cursor:pointer;
     position: relative;
 }
+tr:last-child {
+    border-bottom:2px solid #0075bc;
+}
 tr:hover{
     background:#7d948e;
     color: #fff

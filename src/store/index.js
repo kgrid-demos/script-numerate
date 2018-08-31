@@ -25,6 +25,9 @@ export default new Vuex.Store({
     getactivatorurls:state=>{
       return state.paths.activator_urls
     },
+    getlibraryurl:state=>{
+      return state.paths.library_url
+    },
   },
   actions: {
     copytoclipboard(context, text){

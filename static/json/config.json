@@ -1,6 +1,6 @@
 {
   "shelf_url": "./shelf/",
-  "library_url": "./",
+  "library_url": "https://library.kgrid.org/",
   "user_url": "./",
   "default_act_url_index":   0,
   "default_demo_url_index":    0,

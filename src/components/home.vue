@@ -18,14 +18,13 @@
 			</div>
 			<div class='row tabletitle' v-show='resultready'>
 				<div class='col-md-8 col-sm-8 col-xs-8' style='padding-top:10px;line-height: 3em;'>
-					<span style='font-size:24px; font-style:italic; font-weight:600;'> {{selectedrxcui}} - {{selectedname}}</span>
+					<a :href='objlink' target='_blank'><span style='font-size:24px; font-style:italic; font-weight:600;'> {{selectedrxcui}} - {{selectedname}}</span></a><br>
 				</div>
-				<div class='col-md-4 col-sm-4 col-xs-4' style='font-size:16px; line-height:2em; padding-top:10px;'>
-					<span>Date Range: Jan. 01, 2016 - Dec. 31, 2016</span>
-					<span>Prescription Total Count: <b style="font-size:20px;"> {{count}} </b></span>
-
+				<div class='col-md-4 col-sm-4 col-xs-4' style='font-size:18px; line-height:3em; padding-top:10px;'>
+					<span>Prescription Total Count: <b style="font-size:22px;"> {{count}} </b></span><br>
 				</div>
 		</div>
+
 			<div class='kgl-search' v-show='resultready'>
 			 	<icon color="#0075bc" name="search"></icon>
 			 <input name="query" spellcheck=false v-model="searchQuery" @keypress.enter="enterPressed" placeholder="Enter text to search.">
@@ -35,6 +34,18 @@
 	:columns="gridColumns"
 	:filter-key="searchQuery">
 </kogrid>
+<div class='row tabletitle' v-show='resultready' style='font-style:italic; padding-top:30px;'>
+	<div class='col-md-4 col-sm-4 col-xs-4' style='font-size:16px; line-height:2em; text-align:center; padding-top:10px;'>
+		<span>Data Source: Michigan Medicine</span><br>
+	</div>
+	<div class='col-md-4 col-sm-4 col-xs-4' style='font-size:16px; line-height:2em; padding-top:10px;'>
+		<span>Date Range: Jan. 01, 2016 - Dec. 31, 2016</span><br>
+	</div>
+	<div class='col-md-4 col-sm-4 col-xs-4' style='font-size:16px; line-height:2em; padding-top:10px;'>
+		<span style='bottom:0;'><small>Note: Inpatients of age 75 years or older</small></span>
+	</div>
+
+</div>
 		</div>
 			</applayout>
 		</div>
@@ -78,6 +89,13 @@ export default {
 		 // activator_url:'http://localhost:8080/',
 		 activator_url: function(){
 			 return this.$store.getters.getactivatorurls[0]
+		 },
+		 library_url: function(){
+			 return this.$store.getters.getlibraryurl
+		 },
+		 objlink:function(){
+			 var link = this.library_url+'/#/object/99999%2F'+this.selectedrxcui+'sig%2Fv0.0.1'
+			 return link
 		 }
 	 },
 	 watch:{
@@ -85,7 +103,8 @@ export default {
 			 if(this.item==null){
 				 this.resultready=false
 				 this.selectedname=''
-				 				 this.selectedrxcui=''
+				 this.selectedrxcui=''
+				 this.searchQuery=''
 			 }
 		 }
 	 },
