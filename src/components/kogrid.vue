@@ -15,7 +15,7 @@
     <tbody>
       <tr v-for="(entry, index) in filteredData" @click='selectRow(index)' @mouseover='selrow(index)' @mouseout='selrow(-1)'>
         <td v-for="key in columns">
-          {{entry[key]}}
+          <span :class='{common:entry.pattern=="COMMON", rare:entry.pattern=="RARE"}'>{{entry[key]}}</span>
         </td>
       </tr>
     </tbody>
@@ -80,7 +80,7 @@ export default {
       console.log(key)
     },
     selrow: function(index){
-      this.hoverrow =index
+      // this.hoverrow =index
     }
   }
 }
@@ -126,7 +126,7 @@ th.active .arrow {
   opacity: 1;
 }
 tr:nth-child(even) {
-    background-color: #e3e3e3;
+    background-color: #eee;
 }
 tr {
     background-color: #fff;
@@ -138,10 +138,10 @@ tr {
 tr:last-child {
     border-bottom:2px solid #0075bc;
 }
-tr:hover{
+/* tr:hover{
     background:#7d948e;
     color: #fff
-}
+} */
 div.patientsummary {
   display:block;
   position:relative;
@@ -182,5 +182,14 @@ div.interventionlisting ul {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid #fff;
+}
+.common {
+  color: #2ca905;
+  font-weight: 600;
+}
+.rare {
+  /* color: #c7860b; */
+  color: #444;
+  font-weight: 500;
 }
 </style>
