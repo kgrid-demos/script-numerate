@@ -16,8 +16,6 @@ Vue.use(Autocomplete)
 require('es6-promise').polyfill();
 require('lodash');
 require('moment');
-require('prismjs');
-require('prismjs/components/prism-yaml')
 // debug mode
 Vue.config.debug = false;
 Vue.use(VueRouter);
@@ -52,32 +50,6 @@ Vue.filter('formatDate', function(value) {
     return moment(String(value)).format('MMMM DD, YYYY')
   }
 });
-// Vue.directive(
-//   'click-outside', {
-//     bind: function(el, binding, vNode) {
-//     if (typeof binding.value !== 'function') {
-//         const compName = vNode.context.name
-//         var warn = "[Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be"
-//         if (compName) { warn += "Found in component '${compName}'" }
-//         console.warn(warn)
-//       }
-//       const bubble = binding.modifiers.bubble
-//       const handler = (e) => {
-//         if (bubble || (!el.contains(e.target) && el !== e.target)) {
-//           binding.value(e)
-//         }
-//       }
-//       el.__vueClickOutside__ = handler
-//       // add Event Listeners
-//       document.addEventListener('click', handler)
-//     },
-//     unbind: function(el, binding) {
-//       // Remove Event Listeners
-//       document.removeEventListener('click', el.__vueClickOutside__)
-//       el.__vueClickOutside__ = null
-//     }
-//   }
-// )
 var vm = new Vue({
 	router : router,
 	el: '#app',
