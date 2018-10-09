@@ -71,7 +71,7 @@ module.exports = {
   build: {
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../docs/index.html'),
-    assetsRoot: path.resolve(__dirname, '../docs'),
+    assetsRoot: path.resolve(__dirname, '../app'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '',
     productionSourceMap: true,
