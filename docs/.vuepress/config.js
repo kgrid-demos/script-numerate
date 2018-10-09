@@ -8,7 +8,7 @@ module.exports = {
     nav: [
       { text: 'Guide', link: '/' },
       // { text: 'Develop', link: '/develop/' },
-      { text: 'Cancer Risk Collection', link: 'https://kgrid-objects.github.io/script-numerate'},
+      { text: 'Script Numerate Collection', link: 'https://kgrid-objects.github.io/script-numerate'},
       { text: 'Online Demo', link: 'https://demo.kgrid.org/rxpattern/app' }
     ],
     search: true,
