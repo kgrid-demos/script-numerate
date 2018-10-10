@@ -6,6 +6,7 @@ module.exports = {
     repo: 'kgrid-demos/rxpattern',
     lastUpdated: 'Last Updated',
     nav: [
+      { text: 'KGrid.org', link: 'https://kgrid.org' },
       { text: 'Guide', link: '/' },
       // { text: 'Develop', link: '/develop/' },
       { text: 'Script Numerate Collection', link: 'https://kgrid-objects.github.io/script-numerate'},
