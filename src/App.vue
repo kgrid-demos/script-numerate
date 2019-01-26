@@ -1,18 +1,22 @@
 <template>
-  <div>
- 	  <router-view></router-view>
+  <div id="app">
+    <home/>
   </div>
 </template>
 <script>
+  import home from './components/home.vue';
 
 export default {
-  name: 'app1',
+  name: 'App',
   data: function () {
     return {};
   },
+  components: {
+    home
+  },
   created: function () {
     var self = this  // eslint-disable-line
-    this.$http.get("./static/json/config.json").then(response=> {
+    this.$http.get("./json/config.json").then(response=> {
       self.$store.commit('setpaths',response.data);
     }).catch(e=>{
       console.log(e)
@@ -22,9 +26,9 @@ export default {
 </script>
 <style src='bootstrap/dist/css/bootstrap.css'></style>
 <style>
-@import '../static/css/Kgrid-default.css';
-@import '../static/css/theme-kglibrary.css';
-@import '../static/css/style.css';
+@import '../public/css/Kgrid-default.css';
+@import '../public/css/theme-kglibrary.css';
+@import '../public/css/style.css';
 #app {
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;

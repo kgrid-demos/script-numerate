@@ -1,7 +1,6 @@
 <template>
   <div>
-    <b>#{{item.rxcui}}</b>
-    <span>{{ item.name }}</span>
+    <b>#{{item.rxcui}}</b> - <span>{{ item.name }}</span>
     <!-- <abbr>{{item.rxcui}}</abbr> -->
   </div>
 </template>

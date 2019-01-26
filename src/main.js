@@ -25,9 +25,7 @@ Vue.prototype.$http = axios
 Vue.prototype.$moment = moment
 Vue.prototype.$eventBus= eventBus
 // create router
-const routes = [
-                { path : '/', component : require('./components/home.vue')	}
-                	    ];
+const routes = [{ path : '/', component : require('./components/home.vue')	}];
 const router = new VueRouter({
   routes : routes,
   history: true,
@@ -50,12 +48,12 @@ Vue.filter('formatDate', function(value) {
     return moment(String(value)).format('MMMM DD, YYYY')
   }
 });
-var vm = new Vue({
+new Vue({
+  el: '#app',
 	router : router,
-	el: '#app',
+  render: h => h(App),
   store,
 	data : {},
-	components:{ App	},
 	created: function(){
     console.log('Knowledge Grid Library Web Application\nBuild 20180720');
 
