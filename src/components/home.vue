@@ -284,6 +284,7 @@
     font-size: 14px;
     padding: 0px 0px 0px 16px;
     width: 95%;
+    background-color: transparent;
   }
 
   input[id$="datepicker"] {

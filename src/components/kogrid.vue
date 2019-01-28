@@ -138,10 +138,10 @@ tr {
 tr:last-child {
     border-bottom:2px solid #0075bc;
 }
-/* tr:hover{
+tr:hover{
     background:#7d948e;
-    color: #fff
-} */
+    color: #fff;
+}
 div.patientsummary {
   display:block;
   position:relative;
@@ -183,13 +183,12 @@ div.interventionlisting ul {
   border-right: 4px solid transparent;
   border-top: 4px solid #fff;
 }
-.common {
+/* .common {
   color: #2ca905;
   font-weight: 600;
-}
-.rare {
-  /* color: #c7860b; */
+} */
+/* .rare {
   color: #444;
   font-weight: 500;
-}
+} */
 </style>
