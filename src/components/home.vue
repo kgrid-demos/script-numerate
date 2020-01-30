@@ -127,7 +127,7 @@
           var input = {}
           input.rxcui = this.selectedrxcui
           var obj = {}
-          obj.arkID = '99999/' + this.selectedrxcui + 'sig/v0.0.2/'
+          obj.arkID = '99999/' + this.selectedrxcui + 'sig/'
           obj.endpoint = 'rxsigs'
           obj.data = JSON.stringify(input)
           obj.success = function (response) {
