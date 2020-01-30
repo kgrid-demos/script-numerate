@@ -33,15 +33,11 @@ jobs:
     - run:
         name: Deploy VuePress GitHub Pages
         command: |
-          if [ $RELEASE ]; then
              git config --global user.email "$GIT_USER_EMAIL"
              git config --global user.name "$GIT_USER_NAME"
 
              chmod 777 .circleci/vuepress_deploy.sh && .circleci/vuepress_deploy.sh
 
-             git tag $RELEASE
-             git push origin $RELEASE
-          fi
     - store_artifacts:
           path: dist
 
