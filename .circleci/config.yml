@@ -46,6 +46,7 @@ workflows:
   main:
     jobs:
     - build:
+        context: kgrid-demos
         filters:
           branches:
             only: master
