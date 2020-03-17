@@ -55,7 +55,7 @@ new Vue({
   store,
 	data : {},
 	created: function(){
-    console.log('Knowledge Grid Library Web Application\nBuild 20180720');
+    console.log('Knowledge Grid Library Web Application\nBuild 20200317');
 
 	}
 	}).$mount('#app');
