@@ -101,8 +101,8 @@
       library_url: function () {
         return this.$store.getters.getlibraryurl
       },
-      objlink: function () {
-        var link = this.library_url + '/#/object/99999%2F' + this.selectedrxcui + 'sig%2Fv0.0.2'
+      objectLink: function () {
+        const link = this.library_url + '/#/object/99999%2F' + this.selectedrxcui + 'sig%2Fv1.0';
         return link
       }
     },
