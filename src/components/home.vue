@@ -20,7 +20,7 @@
         </div>
         <div class='row tabletitle' v-show='resultready'>
           <div class='col-md-8 col-sm-8 col-xs-8' style='padding-top:10px;line-height: 3em;'>
-            <a :href='objlink' target='_blank'><span
+            <a :href='objectLink' target='_blank'><span
               style='font-size:24px; font-style:italic; font-weight:600;'> {{selectedrxcui}} - {{selectedname}}</span></a><br>
           </div>
           <div class='col-md-4 col-sm-4 col-xs-4'
