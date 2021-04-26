@@ -7,7 +7,8 @@
           </div>
           <v-autocomplete :items="items" v-model="item" :get-label="getLabel" :min-len='2'
                           :component-item='template' @item-selected='itemSelected'
-                          @item-clicked='itemSelected' @update-items="updateItems">
+                          @item-clicked='itemSelected' @update-items="updateItems"
+                          placeholder="Click to select target prescription">
           </v-autocomplete>
 
         </div>
