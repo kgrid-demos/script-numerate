@@ -15,6 +15,7 @@ export default {
     home
   },
   created: function () {
+    document.title = "RxPattern";
     var self = this  // eslint-disable-line
     this.$http.get("./json/config.json").then(response=> {
       self.$store.commit('setpaths',response.data);
