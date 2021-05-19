@@ -1,0 +1,9 @@
+{
+  "shelf_url": "./shelf/",
+  "library_url": "https://library.kgrid.org/",
+  "user_url": "./",
+  "default_act_url_index":   0,
+  "default_demo_url_index":    0,
+  "activator_urls":["https://activator.kgrid.org/"],
+  "demo_urls":["https://kgrid-demos.github.io/swaggerui", "https://editor.swagger.io"]
+}
